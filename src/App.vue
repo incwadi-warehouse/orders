@@ -65,10 +65,7 @@
           <b-dropdown-item icon="plus" @click="bookmark.createFromPage()">
             {{ $t('addThisPage') }}
           </b-dropdown-item>
-          <b-dropdown-item
-            icon="star"
-            @click="$router.push({ name: 'bookmark' })"
-          >
+          <b-dropdown-item icon="star" @click="navigateToBookmarks">
             {{ $t('bookmarks') }}
           </b-dropdown-item>
         </b-dropdown>
@@ -129,7 +126,7 @@
         </b-list>
         <b-list divider>
           <template #title>
-            <a :href="settings + '/settings'">
+            <a :href="settings + '/'">
               {{ $t('settings') }}
             </a>
           </template>
@@ -226,6 +223,10 @@ export default {
       window.clearInterval(reservationInterval)
     })
 
+    const navigateToBookmarks = () => {
+      window.location = settings + '/bookmark'
+    }
+
     return {
       auth,
       find,
@@ -237,6 +238,7 @@ export default {
       bookmark,
       current,
       stateReservation,
+      navigateToBookmarks,
     }
   },
 }
