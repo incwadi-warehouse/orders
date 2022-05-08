@@ -1,0 +1,15 @@
+version: 2.1
+orbs:
+  node: circleci/node@5.0.2
+  cypress: cypress-io/cypress@1.29.0
+workflows:
+  test:
+    jobs:
+      - cypress/run:
+          matrix:
+            parameters:
+              executor:
+                - cypress/base-14
+                - cypress/base-12
+          yarn: true
+          command: yarn test:e2e --headless
