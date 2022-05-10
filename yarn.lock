@@ -935,10 +935,10 @@
     "@babel/helper-validator-identifier" "^7.16.7"
     to-fast-properties "^2.0.0"
 
-"@baldeweg/components@7.4.0":
-  version "7.4.0"
-  resolved "https://registry.yarnpkg.com/@baldeweg/components/-/components-7.4.0.tgz#7e457dc5ee48b699301455c25c1994fc07af19e5"
-  integrity sha512-fiqv1hsgK4J0XIN9FBkN48fVGr1RTj07Yu0GgAuGbOK81GdLYDYJPmkC11wdav7jrayNpYhiXCQ3vrffjSpAAA==
+"@baldeweg/components@7.4.1":
+  version "7.4.1"
+  resolved "https://registry.yarnpkg.com/@baldeweg/components/-/components-7.4.1.tgz#c12edccf7a462bea559659b6ce354f939ce98a51"
+  integrity sha512-BXkpffL5CS+m7CNgpGMsfXQ7MGt/wGuchygsXvA2dCOVI068GIfoH69zvfR9h21XMy1Acuh5Y+0LU/LfLKz6Sg==
   dependencies:
     core-js "3.22.4"
     vue "2.6.14"
