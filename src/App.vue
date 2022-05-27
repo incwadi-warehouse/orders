@@ -112,16 +112,16 @@
             </a>
           </template>
         </b-list>
-        <b-list :route="{ name: 'reservation' }" divider>
-          <template #title>
-            {{ $t('reservation') }}
-          </template>
-        </b-list>
         <b-list divider>
           <template #title>
             <a :href="catalog + '/directory'">
               {{ $t('directory') }}
             </a>
+          </template>
+        </b-list>
+        <b-list :route="{ name: 'reservation' }" divider>
+          <template #title>
+            {{ $t('reservation') }}
           </template>
         </b-list>
         <b-list divider>
