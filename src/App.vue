@@ -2,9 +2,9 @@
 import Logo from './components/Logo'
 import AuthLogin from '@/components/auth/Login'
 import useAuth from '@/composables/useAuth'
-import useBookmark from '@/composables/useBookmark'
+import { useBookmark } from '@/composables/useBookmark'
 import useToast from './../node_modules/@baldeweg/components/src/composables/useToast'
-import useReservation from '@/composables/useReservation'
+import { useReservation } from '@/composables/useReservation'
 import router from '@/router'
 import { onMounted, onUnmounted, ref } from '@vue/composition-api'
 
@@ -39,12 +39,12 @@ export default {
       })
     })
 
-    const bookmark = useBookmark()
+    const { bookmarks, list, open, createFromPage } = useBookmark()
 
     let bookmarkInterval = null
 
     const refresh = () => {
-      bookmarkInterval = setInterval(bookmark.list, 5000)
+      bookmarkInterval = setInterval(list, 5000)
     }
 
     onMounted(refresh)
@@ -55,9 +55,7 @@ export default {
 
     const { current } = useToast()
 
-    const { state: stateReservation, list: listReservations } = useReservation()
-
-    listReservations()
+    const { reservations, list: listReservations } = useReservation()
 
     const reservationInterval = setInterval(listReservations, 5000)
 
@@ -77,10 +75,13 @@ export default {
       about,
       hasLogo,
       isDrawerActive,
-      bookmark,
+      list,
       current,
-      stateReservation,
+      reservations,
       navigateToBookmarks,
+      bookmarks,
+      open,
+      createFromPage,
     }
   },
 }
@@ -141,16 +142,16 @@ export default {
             </span>
           </template>
           <b-dropdown-item
-            v-for="item in bookmark.state.bookmarks"
+            v-for="item in bookmarks"
             :key="item.id"
-            @click.prevent="bookmark.open(item.url)"
+            @click.prevent="open(item.url)"
           >
             {{ item.name }}
           </b-dropdown-item>
 
           <b-dropdown-divider />
 
-          <b-dropdown-item icon="plus" @click="bookmark.createFromPage()">
+          <b-dropdown-item icon="plus" @click="createFromPage()">
             {{ $t('addThisPage') }}
           </b-dropdown-item>
           <b-dropdown-item icon="star" @click="navigateToBookmarks">
@@ -162,13 +163,7 @@ export default {
           class="action"
           @click.prevent="$router.push({ name: 'reservation' })"
         >
-          <b-badge
-            :content="
-              stateReservation.reservations &&
-              stateReservation.reservations.length
-            "
-            hide-empty
-          >
+          <b-badge :content="reservations && reservations.length" hide-empty>
             <b-icon type="euro" />
           </b-badge>
         </span>

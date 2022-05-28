@@ -1,34 +1,31 @@
-import { reactive } from '@vue/composition-api'
+import { onMounted, ref } from '@vue/composition-api'
 import { request } from '@/api'
 
-export default function useReservation() {
-  const base = '/api/reservation'
+const reservations = ref(null)
 
-  const state = reactive({
-    reservations: null,
-    reservation: null,
-    isLoading: false,
-  })
+export function useReservation() {
+  const reservation = ref(null)
+  const isLoading = ref(false)
 
   const list = () => {
-    state.isLoading = true
-    return request('get', base + '/list')
-      .then((response) => {
-        state.reservations = response.data
-      })
-      .finally(() => {
-        state.isLoading = false
-      })
+    isLoading.value = true
+
+    return request('get', '/api/reservation/list').then((res) => {
+      reservations.value = res.data
+      isLoading.value = false
+    })
   }
 
+  onMounted(list)
+
   const create = (data) => {
-    return request('post', base + '/new', data).then(() => {
+    return request('post', '/api/reservation/new', data).then(() => {
       list()
     })
   }
 
   const update = (data) => {
-    return request('put', base + '/' + data.id, {
+    return request('put', '/api/reservation/' + data.id, {
       collection: data.collection,
       notes: data.notes,
       books: data.books,
@@ -41,16 +38,18 @@ export default function useReservation() {
   }
 
   const remove = (id) => {
-    return request('delete', base + '/' + id).then(() => {
+    return request('delete', '/api/reservation/' + id).then(() => {
       list()
     })
   }
 
   return {
-    state,
+    reservations,
+    reservation,
+    isLoading,
     list,
-    remove,
     create,
     update,
+    remove,
   }
 }

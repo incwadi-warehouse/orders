@@ -1,8 +1,7 @@
 <script>
 import ReservationCreate from './../components/reservation/Create.vue'
 import ReservationShow from './../components/reservation/Show.vue'
-import useReservation from '../composables/useReservation.js'
-import { onMounted } from '@vue/composition-api'
+import { useReservation } from '../composables/useReservation.js'
 
 export default {
   name: 'reservation-view',
@@ -17,14 +16,11 @@ export default {
     auth: Object,
   },
   setup() {
-    const { state, list, create, update, remove } = useReservation()
-
-    onMounted(() => {
-      list()
-    })
+    const { reservations, isLoading, create, update, remove } = useReservation()
 
     return {
-      state,
+      reservations,
+      isLoading,
       create,
       update,
       remove,
@@ -46,10 +42,10 @@ export default {
 
     <b-container size="m">
       <h2>{{ $t('reservedBooks') }}</h2>
-      <b-spinner size="l" v-if="state.isLoading" />
-      <div v-if="state.reservations">
+      <b-spinner size="l" v-if="isLoading" />
+      <div v-if="reservations">
         <reservation-show
-          v-for="item in state.reservations"
+          v-for="item in reservations"
           :key="item.id"
           :reservation="item"
           @update="update($event)"
