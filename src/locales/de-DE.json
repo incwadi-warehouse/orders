@@ -8,7 +8,6 @@
   "search": "Suche",
   "reservation": "Reservierung",
   "directory": "Verzeichnis",
-  "find": "Shop",
   "username": "Nutzername",
   "password": "Passwort",
   "wrongCredentials": "Bitte Zugangsdaten prüfen.",
@@ -38,7 +37,6 @@
   "reservedBooks": "Reservierte Bücher",
   "reservationDesc": "<p>Du suchst nach Büchern und kannst diese in den Warenkorb legen. Auf der Reservierungsseite kannst du alle Bücher aus dem Warenkorb zu einer Reservierung hinzufügen. Es lassen sich auch ein Abholdatum und Notizen speichern, alle Details sind optional. Wenn du nur ein Abholdatum festlegen möchtest, geh direkt zur Reservierungsseite und lege ein Datum fest.</p><p>Die Datensätze sind an eine Filiale gebunden und können nur von dieser Filiale eingesehen werden. Nur Administratoren dürfen eine Reservierung löschen - alle Bücher müssen als verkauft oder entfernt markiert sein.</p><p>Ein Buch kann aus der Reservierung entfernt werden, indem du das Buch zum Bearbeiten öffnest und das Häkchen vor \"Reserviert\" entfernst.</p>",
   "shop": "Shop",
-  "saved": "Gespeichert",
   "updated": "Aktualisiert",
   "error": "Fehler",
   "deprecated_reservation_without_books": "Deprecated: Reservierungen ohne Bücher werden demnächst nicht mehr akzeptiert."
