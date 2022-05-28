@@ -16,14 +16,11 @@ export default {
     auth: Object,
   },
   setup() {
-    const { reservations, isLoading, create, update, remove } = useReservation()
+    const { reservations, isLoading } = useReservation()
 
     return {
       reservations,
       isLoading,
-      create,
-      update,
-      remove,
     }
   },
 }
@@ -37,7 +34,7 @@ export default {
 
     <b-container size="m">
       <h2>{{ $t('newReservation') }}</h2>
-      <reservation-create @create="create($event)" />
+      <reservation-create />
     </b-container>
 
     <b-container size="m">
@@ -47,9 +44,7 @@ export default {
         <reservation-show
           v-for="item in reservations"
           :key="item.id"
-          :reservation="item"
-          @update="update($event)"
-          @remove="remove($event)"
+          :reservation-id="item.id"
         />
       </div>
     </b-container>

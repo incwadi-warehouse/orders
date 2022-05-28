@@ -53,6 +53,10 @@ export default {
       clearInterval(bookmarkInterval)
     })
 
+    const navigateToBookmarks = () => {
+      window.location = settings + '/bookmark'
+    }
+
     const { current } = useToast()
 
     const { reservations, list: listReservations } = useReservation()
@@ -63,10 +67,6 @@ export default {
       window.clearInterval(reservationInterval)
     })
 
-    const navigateToBookmarks = () => {
-      window.location = settings + '/bookmark'
-    }
-
     return {
       auth,
       find,
@@ -75,13 +75,13 @@ export default {
       about,
       hasLogo,
       isDrawerActive,
+      bookmarks,
       list,
+      open,
+      createFromPage,
       current,
       reservations,
       navigateToBookmarks,
-      bookmarks,
-      open,
-      createFromPage,
     }
   },
 }

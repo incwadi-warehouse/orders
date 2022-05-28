@@ -1,7 +1,3 @@
-<template>
-  <img :src="logo" alt="incwadi" v-if="logo" />
-</template>
-
 <script>
 export default {
   name: 'logo',
@@ -13,3 +9,7 @@ export default {
   },
 }
 </script>
+
+<template>
+  <img :src="logo" alt="incwadi" v-if="logo" />
+</template>

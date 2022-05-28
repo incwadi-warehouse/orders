@@ -37,7 +37,7 @@
 
 <script>
 import { ref, watch } from '@vue/composition-api'
-import useAuth from '@/composables/useAuth'
+import useAuth from '@/composables/useAuth.js'
 
 export default {
   name: 'auth-password',
