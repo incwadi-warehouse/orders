@@ -1,3 +1,91 @@
+<script>
+import Logo from './components/Logo'
+import AuthLogin from '@/components/auth/Login'
+import useAuth from '@/composables/useAuth'
+import useBookmark from '@/composables/useBookmark'
+import useToast from './../node_modules/@baldeweg/components/src/composables/useToast'
+import useReservation from '@/composables/useReservation'
+import router from '@/router'
+import { onMounted, onUnmounted, ref } from '@vue/composition-api'
+
+export default {
+  name: 'app',
+  components: {
+    Logo,
+    AuthLogin,
+  },
+  head: {
+    title: 'Home',
+  },
+  setup() {
+    const auth = useAuth()
+
+    const find = process.env.VUE_APP_FIND
+
+    const catalog = process.env.VUE_APP_CATALOG
+
+    const settings = process.env.VUE_APP_SETTINGS
+
+    const about = process.env.VUE_APP_ABOUT
+
+    const hasLogo = process.env.VUE_APP_LOGO === 'false' ? false : true
+
+    const isDrawerActive = ref(false)
+
+    onMounted(() => {
+      router.beforeEach((_to, _from, next) => {
+        isDrawerActive.value = false
+        next()
+      })
+    })
+
+    const bookmark = useBookmark()
+
+    let bookmarkInterval = null
+
+    const refresh = () => {
+      bookmarkInterval = setInterval(bookmark.list, 5000)
+    }
+
+    onMounted(refresh)
+
+    onUnmounted(() => {
+      clearInterval(bookmarkInterval)
+    })
+
+    const { current } = useToast()
+
+    const { state: stateReservation, list: listReservations } = useReservation()
+
+    listReservations()
+
+    const reservationInterval = setInterval(listReservations, 5000)
+
+    onUnmounted(() => {
+      window.clearInterval(reservationInterval)
+    })
+
+    const navigateToBookmarks = () => {
+      window.location = settings + '/bookmark'
+    }
+
+    return {
+      auth,
+      find,
+      catalog,
+      settings,
+      about,
+      hasLogo,
+      isDrawerActive,
+      bookmark,
+      current,
+      stateReservation,
+      navigateToBookmarks,
+    }
+  },
+}
+</script>
+
 <template>
   <b-app>
     <b-masthead>
@@ -152,97 +240,6 @@
     }}</b-toast>
   </b-app>
 </template>
-
-<script>
-import Logo from './components/Logo'
-import AuthLogin from '@/components/auth/Login'
-import useAuth from '@/composables/useAuth'
-import useBookmark from '@/composables/useBookmark'
-import useToast from './../node_modules/@baldeweg/components/src/composables/useToast'
-import useReservation from '@/composables/useReservation'
-import router from '@/router'
-import { onMounted, onUnmounted, ref } from '@vue/composition-api'
-
-export default {
-  name: 'app',
-  components: {
-    Logo,
-    AuthLogin,
-  },
-  head: {
-    title: 'Home',
-    titleTemplate: (title) => {
-      return title ? title + ' - ' + 'incwadi Warehouse' : 'incwadi Warehouse'
-    },
-  },
-  setup() {
-    const auth = useAuth()
-
-    const find = process.env.VUE_APP_FIND
-
-    const catalog = process.env.VUE_APP_CATALOG
-
-    const settings = process.env.VUE_APP_SETTINGS
-
-    const about = process.env.VUE_APP_ABOUT
-
-    const hasLogo = process.env.VUE_APP_LOGO === 'false' ? false : true
-
-    const isDrawerActive = ref(false)
-
-    onMounted(() => {
-      router.beforeEach((_to, _from, next) => {
-        isDrawerActive.value = false
-        next()
-      })
-    })
-
-    const bookmark = useBookmark()
-
-    let bookmarkInterval = null
-
-    const refresh = () => {
-      bookmarkInterval = setInterval(bookmark.list, 5000)
-    }
-
-    onMounted(refresh)
-
-    onUnmounted(() => {
-      clearInterval(bookmarkInterval)
-    })
-
-    const { current } = useToast()
-
-    const { state: stateReservation, list: listReservations } = useReservation()
-
-    listReservations()
-
-    const reservationInterval = setInterval(listReservations, 5000)
-
-    onUnmounted(() => {
-      window.clearInterval(reservationInterval)
-    })
-
-    const navigateToBookmarks = () => {
-      window.location = settings + '/bookmark'
-    }
-
-    return {
-      auth,
-      find,
-      catalog,
-      settings,
-      about,
-      hasLogo,
-      isDrawerActive,
-      bookmark,
-      current,
-      stateReservation,
-      navigateToBookmarks,
-    }
-  },
-}
-</script>
 
 <style scoped>
 .logo {
