@@ -1,6 +1,7 @@
 <script>
 import { useReservation } from '@/composables/useReservation.js'
 import { computed, ref, watchEffect } from '@vue/composition-api'
+import dayjs from 'dayjs'
 
 export default {
   name: 'reservation-show',
@@ -40,6 +41,12 @@ export default {
       return date.getTime() / 1000 || 0
     })
 
+    const diff = computed(() => {
+      const duration = dayjs().diff(dayjs.unix(collectionTimestamp.value))
+
+      return Math.round(duration / 1000 / 86400)
+    })
+
     const toLocaleDateString = (data) => {
       let date = new Date(data * 1000)
 
@@ -60,6 +67,7 @@ export default {
       collectionTime,
       collectionTimestamp,
       toLocaleDateString,
+      diff,
       update,
       remove,
     }
@@ -72,6 +80,10 @@ export default {
     <p>
       {{ $t('createdAt') }}: {{ toLocaleDateString(reservation.createdAt) }}
     </p>
+
+    <b-alert type="error" v-if="diff > 14">{{
+      $t('old_reservation', { days: diff })
+    }}</b-alert>
 
     <ul>
       <li v-for="book in reservation.books" :key="book.id">

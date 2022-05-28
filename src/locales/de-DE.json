@@ -39,5 +39,6 @@
   "shop": "Shop",
   "updated": "Aktualisiert",
   "error": "Fehler",
-  "deprecated_reservation_without_books": "Deprecated: Reservierungen ohne Bücher werden demnächst nicht mehr akzeptiert."
+  "deprecated_reservation_without_books": "Deprecated: Reservierungen ohne Bücher werden demnächst nicht mehr akzeptiert.",
+  "old_reservation": "Die Reservierung ist {days} Tage alt!"
 }
