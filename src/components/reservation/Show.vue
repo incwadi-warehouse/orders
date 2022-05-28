@@ -42,7 +42,7 @@ export default {
     })
 
     const diff = computed(() => {
-      const duration = dayjs().diff(dayjs.unix(collectionTimestamp.value))
+      const duration = dayjs().diff(dayjs.unix(reservation.value.createdAt))
 
       return Math.round(duration / 1000 / 86400)
     })
