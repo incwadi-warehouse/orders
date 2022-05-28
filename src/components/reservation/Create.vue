@@ -1,16 +1,5 @@
 <template>
   <article>
-    <ul v-if="null !== cart">
-      <li v-for="book in cart" :key="book.id">
-        <router-link :to="{ name: 'book', params: { bookId: book.id } }">
-          {{ book.title }} - {{ book.price }}
-          <span v-if="book.sold"> - {{ $t('sold') }}</span>
-          <span v-if="book.removed"> - {{ $t('removed') }}</span>
-        </router-link>
-      </li>
-    </ul>
-    <b-form-input type="hidden" id="books" v-model="state.books" />
-
     <b-form @submit.prevent="create">
       <b-form-group>
         <b-form-item>
@@ -120,21 +109,13 @@ import { computed, reactive } from '@vue/composition-api'
 
 export default {
   name: 'reservation-create',
-  props: {
-    cart: Array,
-  },
   setup(props, { emit }) {
     const state = reactive({
       date: null,
       time: '00:00',
       notes: null,
       books: computed(() => {
-        if (null === props.cart) return
-        let list = []
-        props.cart.forEach((element) => {
-          list.push(element.id)
-        })
-        return list.join(',')
+        return ''
       }),
       collection: computed(() => {
         if (null === state.date || null === state.time) return

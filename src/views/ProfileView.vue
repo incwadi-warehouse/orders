@@ -1,3 +1,24 @@
+<script>
+import AuthPassword from '@/components/auth/Password.vue'
+import ProfileLocale from '@/components/profile/Locale.vue'
+import ProfileTheme from '@/components/profile/Theme.vue'
+
+export default {
+  name: 'profile-view',
+  components: {
+    AuthPassword,
+    ProfileLocale,
+    ProfileTheme,
+  },
+  props: {
+    auth: Object,
+  },
+  head: {
+    title: 'Profile',
+  },
+}
+</script>
+
 <template>
   <article>
     <b-container size="m">
@@ -17,24 +38,3 @@
     </b-container>
   </article>
 </template>
-
-<script>
-import AuthPassword from '@/components/auth/Password'
-import ProfileLocale from '@/components/profile/Locale'
-import ProfileTheme from '@/components/profile/Theme'
-
-export default {
-  name: 'profile-view',
-  components: {
-    AuthPassword,
-    ProfileLocale,
-    ProfileTheme,
-  },
-  props: {
-    auth: Object,
-  },
-  head: {
-    title: 'Profile',
-  },
-}
-</script>
