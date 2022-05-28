@@ -10,12 +10,12 @@ const router = new VueRouter({
     {
       path: '/',
       name: 'reservation',
-      component: () => import('../views/ReservationView'),
+      component: () => import('../views/ReservationView.vue'),
     },
     {
       path: '/profile',
       name: 'profile',
-      component: () => import('../views/ProfileView'),
+      component: () => import('../views/ProfileView.vue'),
     },
     {
       path: '*',
