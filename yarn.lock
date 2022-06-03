@@ -935,10 +935,10 @@
     "@babel/helper-validator-identifier" "^7.16.7"
     to-fast-properties "^2.0.0"
 
-"@baldeweg/components@7.4.0":
-  version "7.4.0"
-  resolved "https://registry.yarnpkg.com/@baldeweg/components/-/components-7.4.0.tgz#7e457dc5ee48b699301455c25c1994fc07af19e5"
-  integrity sha512-fiqv1hsgK4J0XIN9FBkN48fVGr1RTj07Yu0GgAuGbOK81GdLYDYJPmkC11wdav7jrayNpYhiXCQ3vrffjSpAAA==
+"@baldeweg/components@7.4.1":
+  version "7.4.1"
+  resolved "https://registry.yarnpkg.com/@baldeweg/components/-/components-7.4.1.tgz#c12edccf7a462bea559659b6ce354f939ce98a51"
+  integrity sha512-BXkpffL5CS+m7CNgpGMsfXQ7MGt/wGuchygsXvA2dCOVI068GIfoH69zvfR9h21XMy1Acuh5Y+0LU/LfLKz6Sg==
   dependencies:
     core-js "3.22.4"
     vue "2.6.14"
@@ -3479,15 +3479,15 @@ core-js-compat@^3.21.0, core-js-compat@^3.22.1, core-js-compat@^3.6.5:
     browserslist "^4.20.3"
     semver "7.0.0"
 
-core-js@3.21.1:
-  version "3.21.1"
-  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.21.1.tgz#f2e0ddc1fc43da6f904706e8e955bc19d06a0d94"
-  integrity sha512-FRq5b/VMrWlrmCzwRrpDYNxyHP9BcAZC+xHJaqTgIE5091ZV1NTmyh0sGOg5XqpnHvR0svdy0sv1gWA1zmhxig==
-
 core-js@3.22.4, core-js@^3.6.5:
   version "3.22.4"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.22.4.tgz#f4b3f108d45736935aa028444a69397e40d8c531"
   integrity sha512-1uLykR+iOfYja+6Jn/57743gc9n73EWiOnSJJ4ba3B4fOEYDBv25MagmEZBxTp5cWq4b/KPx/l77zgsp28ju4w==
+
+core-js@3.22.5:
+  version "3.22.5"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.22.5.tgz#a5f5a58e663d5c0ebb4e680cd7be37536fb2a9cf"
+  integrity sha512-VP/xYuvJ0MJWRAobcmQ8F2H6Bsn+s7zqAAjFaHGBMc5AQm7zaelhD1LGduFn2EehEcQcU+br6t+fwbpQ5d1ZWA==
 
 core-js@^2.4.0:
   version "2.6.12"
@@ -10714,12 +10714,7 @@ vue-i18n-extract@1.0.2:
     is-valid-glob "^1.0.0"
     yargs "^13.2.2"
 
-vue-i18n@8.26.8:
-  version "8.26.8"
-  resolved "https://registry.yarnpkg.com/vue-i18n/-/vue-i18n-8.26.8.tgz#afe936adbf96ff0e9808e04845b8f41cc21c666f"
-  integrity sha512-BN2OXolO15AKS95yNF8oOtARibaO6RxyKkAYNV4XpOmL7S4eVZYMIDtyvDv+XGZaiUmBJSH9mdNqzexvGMnK2A==
-
-vue-i18n@^8.17.0:
+vue-i18n@8.27.1, vue-i18n@^8.17.0:
   version "8.27.1"
   resolved "https://registry.yarnpkg.com/vue-i18n/-/vue-i18n-8.27.1.tgz#fe660f6c14793ae404d6a715875d772594a3324f"
   integrity sha512-lWrGm4F25qReJ7XxSnFVb2h3PfW54ldnM4C+YLBGGJ75+Myt/kj4hHSTKqsyDLamvNYpvINMicSOdW+7yuqgIQ==
