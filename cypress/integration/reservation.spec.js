@@ -76,22 +76,20 @@ describe('Reservation', () => {
       ':nth-child(1) > .form > :nth-child(9) > :nth-child(2) > #notes'
     ).should('have.value', 'note')
 
-    cy.get('div[data-v-a0d12cb0=""] > :nth-child(2) > .alert')
+    cy.get('article > .alert')
   })
 
   it('show buttons', () => {
-    cy.get(':nth-child(2) > .form > .hasButtons > .form-item > :nth-child(2)')
-    cy.get(
-      ':nth-child(2) > .form > .hasButtons > .form-item > .btn_outline_danger'
-    )
+    cy.get(':nth-child(2) > .form > .hasButtons > .item > :nth-child(2)')
+    cy.get(':nth-child(2) > .form > .hasButtons > .item > .btn_outline_danger')
   })
 
   it('edit reservation', () => {
     cy.get(
-      'div[data-v-a0d12cb0=""] > :nth-child(2) > .form > :nth-child(1) > :nth-child(2) > #date'
+      ':nth-child(3) > :nth-child(2) > :nth-child(2) > .form > :nth-child(1) > :nth-child(2) > #date'
     ).type('2022-05-29')
     cy.get(
-      'div[data-v-a0d12cb0=""] > :nth-child(2) > .form > :nth-child(1) > :nth-child(2) > #date'
+      ':nth-child(3) > :nth-child(2) > :nth-child(2) > .form > :nth-child(1) > :nth-child(2) > #date'
     ).should('have.value', '2022-05-29')
 
     cy.get(
