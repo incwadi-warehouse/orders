@@ -1,43 +1,29 @@
-<script>
+<script setup>
 import { useReservation } from '@/composables/useReservation.js'
-import { computed, ref } from '@vue/composition-api'
+import { computed, ref } from 'vue'
 
-export default {
-  name: 'reservation-create',
-  setup() {
-    const { reservation, create } = useReservation()
+const { reservation, create } = useReservation()
 
-    const collectionDate = ref(null)
-    const collectionTime = ref('00:00')
+const collectionDate = ref(null)
+const collectionTime = ref('00:00')
 
-    const collectionTimestamp = computed(() => {
-      if (null === collectionDate.value || null === collectionTime.value) return
+const collectionTimestamp = computed(() => {
+  if (null === collectionDate.value || null === collectionTime.value) return
 
-      let date = new Date(
-        collectionDate.value + ' ' + collectionTime.value + 'Z'
-      )
+  let date = new Date(collectionDate.value + ' ' + collectionTime.value + 'Z')
 
-      return date.getTime() / 1000
-    })
+  return date.getTime() / 1000
+})
 
-    reservation.value = {
-      notes: null,
-      books: '',
-      collection: collectionTimestamp.value,
-      salutation: null,
-      firstname: null,
-      surname: null,
-      mail: null,
-      phone: null,
-    }
-
-    return {
-      reservation,
-      collectionDate,
-      collectionTime,
-      create,
-    }
-  },
+reservation.value = {
+  notes: null,
+  books: '',
+  collection: collectionTimestamp.value,
+  salutation: null,
+  firstname: null,
+  surname: null,
+  mail: null,
+  phone: null,
 }
 </script>
 

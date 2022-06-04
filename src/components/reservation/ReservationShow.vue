@@ -1,77 +1,59 @@
-<script>
+<script setup>
 import { useReservation } from '@/composables/useReservation.js'
-import { computed, ref, watchEffect } from '@vue/composition-api'
+import { computed, ref, watchEffect } from 'vue'
 import dayjs from 'dayjs'
 
-export default {
-  name: 'reservation-show',
-  props: {
-    reservationId: String,
-  },
-  setup(props) {
-    const catalog = process.env.VUE_APP_CATALOG
+const props = defineProps({
+  reservationId: String,
+})
 
-    const { reservation, show, update, remove } = useReservation()
+const catalog = import.meta.env.VUE_APP_CATALOG
 
-    show(props.reservationId)
+const { reservation, show, update, remove } = useReservation()
 
-    const collectionDate = ref(null)
-    const collectionTime = ref('00:00')
+show(props.reservationId)
 
-    watchEffect(() => {
-      if (reservation.value === null || reservation.value.collection === null)
-        return
+const collectionDate = ref(null)
+const collectionTime = ref('00:00')
 
-      let date = new Date(reservation.value.collection * 1000)
+watchEffect(() => {
+  if (reservation.value === null || reservation.value.collection === null)
+    return
 
-      let month = formatNumber(date.getMonth() + 1)
-      let day = formatNumber(date.getDate())
-      collectionDate.value = date.getFullYear() + '-' + month + '-' + day
+  let date = new Date(reservation.value.collection * 1000)
 
-      let hours = formatNumber(date.getHours())
-      let minutes = formatNumber(date.getMinutes())
-      collectionTime.value = hours + ':' + minutes
-    })
+  let month = formatNumber(date.getMonth() + 1)
+  let day = formatNumber(date.getDate())
+  collectionDate.value = date.getFullYear() + '-' + month + '-' + day
 
-    const collectionTimestamp = computed(() => {
-      let date = new Date(
-        collectionDate.value + ' ' + collectionTime.value + 'Z'
-      )
+  let hours = formatNumber(date.getHours())
+  let minutes = formatNumber(date.getMinutes())
+  collectionTime.value = hours + ':' + minutes
+})
 
-      return date.getTime() / 1000 || 0
-    })
+const collectionTimestamp = computed(() => {
+  let date = new Date(collectionDate.value + ' ' + collectionTime.value + 'Z')
 
-    const diff = computed(() => {
-      const duration = dayjs().diff(dayjs.unix(reservation.value.createdAt))
+  return date.getTime() / 1000 || 0
+})
 
-      return Math.round(duration / 1000 / 86400)
-    })
+const diff = computed(() => {
+  const duration = dayjs().diff(dayjs.unix(reservation.value.createdAt))
 
-    const toLocaleDateString = (data) => {
-      let date = new Date(data * 1000)
+  return Math.round(duration / 1000 / 86400)
+})
 
-      return date.toLocaleString()
-    }
+const toLocaleDateString = (data) => {
+  let date = new Date(data * 1000)
 
-    const formatNumber = (number) => {
-      if (number <= 9) {
-        return '0' + number
-      }
-      return number
-    }
+  return date.toLocaleString()
+}
 
-    return {
-      catalog,
-      reservation,
-      collectionDate,
-      collectionTime,
-      collectionTimestamp,
-      toLocaleDateString,
-      diff,
-      update,
-      remove,
-    }
-  },
+const formatNumber = (number) => {
+  if (number <= 9) {
+    return '0' + number
+  }
+  return number
 }
 </script>
 

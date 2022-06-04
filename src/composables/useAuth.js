@@ -1,4 +1,4 @@
-import { onMounted, reactive } from '@vue/composition-api'
+import { onMounted, reactive } from 'vue'
 import Cookies from 'js-cookie'
 import { request } from '@/api'
 

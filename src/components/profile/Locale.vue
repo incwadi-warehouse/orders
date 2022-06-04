@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { reactive, watch } from '@vue/composition-api'
+import { reactive, watch } from 'vue'
 import i18n from '@/i18n'
 
 export default {

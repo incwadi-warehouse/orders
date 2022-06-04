@@ -1,12 +1,14 @@
-import { onMounted, ref } from '@vue/composition-api'
+import { onMounted, ref } from 'vue'
 import { request } from '@/api'
-import useToast from '@baldeweg/components/src/composables/useToast'
-import i18n from '@/i18n.js'
+import { useToast } from '@baldeweg/ui'
+import { useI18n } from 'vue-i18n'
 
 const reservations = ref(null)
 
 export function useReservation() {
   const { add } = useToast()
+
+  const { t } = useI18n()
 
   const reservation = ref(null)
   const isLoading = ref(false)
@@ -58,13 +60,13 @@ export function useReservation() {
       .then(() => {
         add({
           type: 'success',
-          body: i18n.t('updated'),
+          body: t('updated'),
         })
       })
       .catch(() => {
         add({
           type: 'error',
-          body: i18n.t('error'),
+          body: t('error'),
         })
       })
   }

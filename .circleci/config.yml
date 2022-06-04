@@ -11,5 +11,4 @@ workflows:
       - cypress/run:
           executor: image
           yarn: true
-          command: yarn test:e2e --headless
-          # command: yarn build && yarn test:e2e:ci
+          command: yarn build && yarn test:e2e:ci

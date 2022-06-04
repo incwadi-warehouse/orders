@@ -1,29 +1,17 @@
-<script>
-import ReservationCreate from './../components/reservation/Create.vue'
-import ReservationShow from './../components/reservation/Show.vue'
-import { useReservation } from '../composables/useReservation.js'
+<script setup>
+import { useTitle } from '@baldeweg/ui'
+import { useReservation } from '@/composables/useReservation.js'
+import ReservationCreate from '@/components/reservation/ReservationCreate.vue'
+import ReservationShow from '@/components/reservation/ReservationShow.vue'
 
-export default {
-  name: 'reservation-view',
-  head: {
-    title: 'Reservation',
-  },
-  components: {
-    ReservationCreate,
-    ReservationShow,
-  },
-  props: {
-    auth: Object,
-  },
-  setup() {
-    const { reservations, isLoading } = useReservation()
+useTitle({ title: 'Reservation' })
 
-    return {
-      reservations,
-      isLoading,
-    }
-  },
-}
+defineProps({
+  ReservationCreate,
+  ReservationShow,
+})
+
+const { reservations, isLoading } = useReservation()
 </script>
 
 <template>

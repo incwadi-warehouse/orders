@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { reactive, watch } from '@vue/composition-api'
+import { reactive, watch } from 'vue'
 
 export default {
   name: 'profile-theme',

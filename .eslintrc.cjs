@@ -1,4 +1,8 @@
+/* eslint-env node */
+require('@rushstack/eslint-patch/modern-module-resolution')
+
 module.exports = {
+  root: true,
   rules: {
     'prettier/prettier': [
       'error',
@@ -11,23 +15,21 @@ module.exports = {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
   },
-  root: true,
+  extends: [
+    'plugin:vue/vue3-essential',
+    'eslint:recommended',
+    '@vue/eslint-config-prettier',
+  ],
   env: {
-    node: true,
-  },
-  extends: ['plugin:vue/essential', 'eslint:recommended', '@vue/prettier'],
-  parserOptions: {
-    parser: 'babel-eslint',
+    'vue/setup-compiler-macros': true,
   },
   overrides: [
     {
       files: [
-        '**/__tests__/*.{j,t}s?(x)',
-        '**/tests/unit/**/*.spec.{j,t}s?(x)',
+        '**/__tests__/*.spec.{js,ts,jsx,tsx}',
+        'cypress/integration/**.spec.{js,ts,jsx,tsx}',
       ],
-      env: {
-        jest: true,
-      },
+      extends: ['plugin:cypress/recommended'],
     },
   ],
 }

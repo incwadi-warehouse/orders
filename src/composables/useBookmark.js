@@ -1,4 +1,4 @@
-import { onMounted, ref } from '@vue/composition-api'
+import { onMounted, ref } from 'vue'
 import { request } from '@/api'
 
 const bookmarks = ref([])

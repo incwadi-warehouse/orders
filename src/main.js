@@ -1,18 +1,18 @@
-import Vue from 'vue'
-import './installCompositionApi'
 import App from './App.vue'
+import { createUi } from '@baldeweg/ui'
+import { createApp } from 'vue'
 import router from './router'
-import i18n from './i18n'
-import meta from './meta'
-import components from './components'
-import './registerServiceWorker'
+import i18n from './i18n.js'
+import { registerSW } from 'virtual:pwa-register'
+import '@baldeweg/ui/styles'
 
-Vue.config.productionTip = false
+const ui = createUi()
+const app = createApp(App)
 
-new Vue({
-  router,
-  i18n,
-  meta,
-  components,
-  render: (h) => h(App),
-}).$mount('#app')
+app.use(ui)
+app.use(i18n)
+app.use(router)
+
+registerSW()
+
+app.mount('#app')

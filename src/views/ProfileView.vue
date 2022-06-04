@@ -1,22 +1,14 @@
-<script>
+<script setup>
+import { useTitle } from '@baldeweg/ui'
 import AuthPassword from '@/components/auth/Password.vue'
 import ProfileLocale from '@/components/profile/Locale.vue'
 import ProfileTheme from '@/components/profile/Theme.vue'
 
-export default {
-  name: 'profile-view',
-  components: {
-    AuthPassword,
-    ProfileLocale,
-    ProfileTheme,
-  },
-  props: {
-    auth: Object,
-  },
-  head: {
-    title: 'Profile',
-  },
-}
+useTitle({ title: 'Profile' })
+
+defineProps({
+  auth: Object,
+})
 </script>
 
 <template>

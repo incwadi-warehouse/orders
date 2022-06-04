@@ -1,90 +1,65 @@
-<script>
-import Logo from './components/Logo'
-import AuthLogin from '@/components/auth/Login'
-import useAuth from '@/composables/useAuth'
-import { useBookmark } from '@/composables/useBookmark'
-import useToast from './../node_modules/@baldeweg/components/src/composables/useToast'
-import { useReservation } from '@/composables/useReservation'
+<script setup>
+import { useLocale, useTheme } from '@baldeweg/ui'
+import { useBookmark } from '@/composables/useBookmark.js'
+import { useToast } from '@baldeweg/ui'
+import { useReservation } from '@/composables/useReservation.js'
+import Logo from '@/components/AppLogo.vue'
+import AuthLogin from '@/components/auth/Login.vue'
+import useAuth from '@/composables/useAuth.js'
 import router from '@/router'
-import { onMounted, onUnmounted, ref } from '@vue/composition-api'
+import { onMounted, onUnmounted, ref } from 'vue'
 
-export default {
-  name: 'app',
-  components: {
-    Logo,
-    AuthLogin,
-  },
-  head: {
-    title: 'Home',
-  },
-  setup() {
-    const auth = useAuth()
+useLocale()
+useTheme()
 
-    const find = process.env.VUE_APP_FIND
+const auth = useAuth()
 
-    const catalog = process.env.VUE_APP_CATALOG
+const find = import.meta.env.VUE_APP_FIND
 
-    const settings = process.env.VUE_APP_SETTINGS
+const catalog = import.meta.env.VUE_APP_CATALOG
 
-    const about = process.env.VUE_APP_ABOUT
+const settings = import.meta.env.VUE_APP_SETTINGS
 
-    const hasLogo = process.env.VUE_APP_LOGO === 'false' ? false : true
+const about = import.meta.env.VUE_APP_ABOUT
 
-    const isDrawerActive = ref(false)
+const hasLogo = import.meta.env.VUE_APP_LOGO === 'false' ? false : true
 
-    onMounted(() => {
-      router.beforeEach((_to, _from, next) => {
-        isDrawerActive.value = false
-        next()
-      })
-    })
+const isDrawerActive = ref(false)
 
-    const { bookmarks, list, open, createFromPage } = useBookmark()
+onMounted(() => {
+  router.beforeEach((_to, _from, next) => {
+    isDrawerActive.value = false
+    next()
+  })
+})
 
-    let bookmarkInterval = null
+const { bookmarks, list, open, createFromPage } = useBookmark()
 
-    const refresh = () => {
-      bookmarkInterval = setInterval(list, 5000)
-    }
+let bookmarkInterval = null
 
-    onMounted(refresh)
-
-    onUnmounted(() => {
-      clearInterval(bookmarkInterval)
-    })
-
-    const navigateToBookmarks = () => {
-      window.location = settings + '/bookmark'
-    }
-
-    const { current } = useToast()
-
-    const { reservations, list: listReservations } = useReservation()
-
-    const reservationInterval = setInterval(listReservations, 5000)
-
-    onUnmounted(() => {
-      window.clearInterval(reservationInterval)
-    })
-
-    return {
-      auth,
-      find,
-      catalog,
-      settings,
-      about,
-      hasLogo,
-      isDrawerActive,
-      bookmarks,
-      list,
-      open,
-      createFromPage,
-      current,
-      reservations,
-      navigateToBookmarks,
-    }
-  },
+const refresh = () => {
+  bookmarkInterval = setInterval(list, 5000)
 }
+
+onMounted(refresh)
+
+onUnmounted(() => {
+  clearInterval(bookmarkInterval)
+})
+
+const navigateToBookmarks = () => {
+  window.location = settings + '/bookmark'
+}
+
+const { current } = useToast()
+
+const { reservations, list: listReservations } = useReservation()
+
+const reservationInterval = setInterval(listReservations, 5000)
+
+onUnmounted(() => {
+  window.clearInterval(reservationInterval)
+})
 </script>
 
 <template>
@@ -230,9 +205,9 @@ export default {
       >
     </div>
 
-    <b-toast v-if="current" :type="current.type" :visible="true">{{
-      current.body
-    }}</b-toast>
+    <b-toast v-if="current" :type="current.type" :visible="true">
+      {{ current.body }}
+    </b-toast>
   </b-app>
 </template>
 
