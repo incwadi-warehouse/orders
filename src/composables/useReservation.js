@@ -44,9 +44,9 @@ export function useReservation() {
     })
   }
 
-  const update = () => {
+  const update = (collectionTimestamp) => {
     return request('put', '/api/reservation/' + reservation.value.id, {
-      collection: reservation.value.collection,
+      collection: collectionTimestamp,
       notes: reservation.value.notes,
       books: flatten(reservation.value.books),
       salutation: reservation.value.salutation,

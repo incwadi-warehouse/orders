@@ -96,7 +96,7 @@ export default {
       </li>
     </ul>
 
-    <b-form @submit.prevent="update">
+    <b-form @submit.prevent="update(collectionTimestamp)">
       <b-form-group>
         <b-form-item>
           <b-form-label for="date">
