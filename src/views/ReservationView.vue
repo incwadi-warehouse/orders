@@ -1,15 +1,9 @@
 <script setup>
 import { useTitle } from '@baldeweg/ui'
 import { useReservation } from '@/composables/useReservation.js'
-import ReservationCreate from '@/components/reservation/ReservationCreate.vue'
 import ReservationShow from '@/components/reservation/ReservationShow.vue'
 
 useTitle({ title: 'Reservation' })
-
-defineProps({
-  ReservationCreate,
-  ReservationShow,
-})
 
 const { reservations, isLoading } = useReservation()
 </script>
@@ -18,11 +12,6 @@ const { reservations, isLoading } = useReservation()
   <article>
     <b-container size="m">
       <h1>{{ $t('reservation') }}</h1>
-    </b-container>
-
-    <b-container size="m">
-      <h2>{{ $t('newReservation') }}</h2>
-      <reservation-create />
     </b-container>
 
     <b-container size="m">

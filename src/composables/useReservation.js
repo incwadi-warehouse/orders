@@ -30,22 +30,6 @@ export function useReservation() {
     })
   }
 
-  const create = () => {
-    return request('post', '/api/reservation/new', {
-      collection: reservation.value.collection,
-      notes: reservation.value.notes,
-      books: reservation.value.books,
-      salutation: reservation.value.salutation,
-      firstname: reservation.value.firstname,
-      surname: reservation.value.surname,
-      mail: reservation.value.mail,
-      phone: reservation.value.phone,
-    }).then(() => {
-      list()
-      reservation.value = null
-    })
-  }
-
   const update = (collectionTimestamp) => {
     return request('put', '/api/reservation/' + reservation.value.id, {
       collection: collectionTimestamp,
@@ -92,7 +76,6 @@ export function useReservation() {
     reservation,
     isLoading,
     list,
-    create,
     show,
     update,
     remove,
