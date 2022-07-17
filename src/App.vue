@@ -8,6 +8,7 @@ import AuthLogin from '@/components/auth/Login.vue'
 import useAuth from '@/composables/useAuth.js'
 import router from '@/router'
 import { onMounted, onUnmounted, ref } from 'vue'
+import pkg from './../package.json'
 
 const { locale } = useLocale()
 locale.value = import.meta.env.VUE_APP_I18N_LOCALE
@@ -61,6 +62,8 @@ const reservationInterval = setInterval(listReservations, 5000)
 onUnmounted(() => {
   window.clearInterval(reservationInterval)
 })
+
+const version = pkg.version
 </script>
 
 <template>
@@ -201,9 +204,11 @@ onUnmounted(() => {
     </b-drawer>
 
     <div class="project">
-      <a href="https://github.com/incwadi-warehouse/docu"
-        >A baldeweg Open Source project</a
-      >
+      <a href="https://github.com/abaldeweg">baldeweg Open Source</a>
+      &bull;
+      <a href="https://github.com/incwadi-warehouse/docu/releases">{{
+        version
+      }}</a>
     </div>
 
     <b-toast v-if="current" :type="current.type" :visible="true">
@@ -224,6 +229,7 @@ onUnmounted(() => {
   text-align: right;
   font-size: 0.6rem;
   margin: 0 20px;
+  color: var(--color-neutral-04);
 }
 .project a,
 .project a:hover {
