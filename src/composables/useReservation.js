@@ -1,11 +1,17 @@
 import { onMounted, ref } from 'vue'
-import { request } from '@/api'
 import { useToast } from '@baldeweg/ui'
 import { useI18n } from 'vue-i18n'
+import { useRequest } from '@baldeweg/ui'
+import Cookies from 'js-cookie'
 
 const reservations = ref(null)
 
 export function useReservation() {
+  const { config, setAuthHeader, request } = useRequest()
+
+  config.value.baseURL = import.meta.env.VUE_APP_API
+  setAuthHeader(Cookies.get('token'))
+
   const { add } = useToast()
 
   const { t } = useI18n()
