@@ -1,6 +1,6 @@
 import { onMounted, reactive } from 'vue'
 import Cookies from 'js-cookie'
-import { request } from '@/api'
+import { useRequest } from '@baldeweg/ui'
 
 export const state = reactive({
   username: null,
@@ -16,6 +16,11 @@ export const state = reactive({
 })
 
 export default function useAuth() {
+  const { config, setAuthHeader, request } = useRequest()
+
+  config.value.baseURL = import.meta.env.VUE_APP_API
+  setAuthHeader(Cookies.get('token'))
+
   const login = () => {
     state.isLoggingIn = true
 
