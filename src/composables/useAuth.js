@@ -38,7 +38,7 @@ export default function useAuth() {
         state.username = null
         state.password = null
 
-        check()
+        // check()
       })
       .catch(() => {
         state.wrongCredentials = true
