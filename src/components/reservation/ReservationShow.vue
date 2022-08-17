@@ -1,7 +1,7 @@
 <script setup>
-import { useReservation } from '@/composables/useReservation.js'
 import { computed, ref, watchEffect } from 'vue'
 import dayjs from 'dayjs'
+import { useReservation } from '@/composables/useReservation.js'
 
 const props = defineProps({
   reservationId: String,
@@ -60,7 +60,7 @@ const formatNumber = (number) => {
 <template>
   <div class="reservation" v-if="reservation">
     <p>
-      {{ $t('createdAt') }}: {{ toLocaleDateString(reservation.createdAt) }}
+      {{ $t('reserved_on') }}: {{ toLocaleDateString(reservation.createdAt) }}
     </p>
 
     <b-alert type="error" v-if="diff > 14">{{

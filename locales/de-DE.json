@@ -40,5 +40,6 @@
   "updated": "Aktualisiert",
   "error": "Fehler",
   "deprecated_reservation_without_books": "Deprecated: Reservierungen ohne Bücher werden nicht mehr akzeptiert.",
-  "old_reservation": "Die Reservierung ist {days} Tage alt!"
+  "old_reservation": "Die Reservierung ist {days} Tage alt!",
+  "reserved_on": "Reserviert am"
 }
