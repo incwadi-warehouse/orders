@@ -11,11 +11,10 @@ const { reservations, isLoading } = useReservation()
 <template>
   <article>
     <b-container size="m">
-      <h1>{{ $t('reservation') }}</h1>
+      <h1>{{ $t('reservations') }}</h1>
     </b-container>
 
     <b-container size="m">
-      <h2>{{ $t('reservedBooks') }}</h2>
       <b-spinner size="l" v-if="isLoading" />
       <div v-if="reservations">
         <reservation-show

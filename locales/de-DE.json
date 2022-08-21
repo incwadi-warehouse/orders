@@ -42,5 +42,6 @@
   "deprecated_reservation_without_books": "Deprecated: Reservierungen ohne Bücher werden nicht mehr akzeptiert.",
   "old_reservation": "Die Reservierung ist {days} Tage alt!",
   "reserved_on": "Reserviert am",
-  "customer_details": "Kundeninformation"
+  "customer_details": "Kundeninformation",
+  "reservations": "Reservierungen"
 }
