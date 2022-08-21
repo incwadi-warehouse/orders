@@ -78,134 +78,143 @@ const formatNumber = (number) => {
       </li>
     </ul>
 
-    <b-form @submit.prevent="update(collectionTimestamp)">
-      <b-form-group>
-        <b-form-item>
-          <b-form-label for="date">
-            {{ $t('date') }}
-          </b-form-label>
-        </b-form-item>
-        <b-form-item>
-          <b-form-input type="date" id="date" v-model="collectionDate" />
-        </b-form-item>
-      </b-form-group>
+    <details>
+      <summary class="selector">
+        {{ $t('customer_details') }}
+      </summary>
+      <b-form @submit.prevent="update(collectionTimestamp)">
+        <b-form-group>
+          <b-form-item>
+            <b-form-label for="date">
+              {{ $t('date') }}
+            </b-form-label>
+          </b-form-item>
+          <b-form-item>
+            <b-form-input type="date" id="date" v-model="collectionDate" />
+          </b-form-item>
+        </b-form-group>
 
-      <b-form-group>
-        <b-form-item>
-          <b-form-label for="time">
-            {{ $t('time') }}
-          </b-form-label>
-        </b-form-item>
-        <b-form-item>
-          <b-form-input type="time" id="time" v-model="collectionTime" />
-        </b-form-item>
-      </b-form-group>
+        <b-form-group>
+          <b-form-item>
+            <b-form-label for="time">
+              {{ $t('time') }}
+            </b-form-label>
+          </b-form-item>
+          <b-form-item>
+            <b-form-input type="time" id="time" v-model="collectionTime" />
+          </b-form-item>
+        </b-form-group>
 
-      <b-form-input
-        type="hidden"
-        id="collection"
-        v-model="collectionTimestamp"
-      />
+        <b-form-input
+          type="hidden"
+          id="collection"
+          v-model="collectionTimestamp"
+        />
 
-      <b-form-group>
-        <b-form-item>
-          <b-form-label for="salutation">
-            {{ $t('salutation') }}
-          </b-form-label>
-        </b-form-item>
-        <b-form-item>
-          <b-form-select
-            :items="[
-              { key: 'm', value: $t('mr') },
-              { key: 'f', value: $t('mrs') },
-              { key: 'd', value: $t('none_divers') },
-            ]"
-            id="salutation"
-            v-model="reservation.salutation"
-          />
-        </b-form-item>
-      </b-form-group>
+        <b-form-group>
+          <b-form-item>
+            <b-form-label for="salutation">
+              {{ $t('salutation') }}
+            </b-form-label>
+          </b-form-item>
+          <b-form-item>
+            <b-form-select
+              :items="[
+                { key: 'm', value: $t('mr') },
+                { key: 'f', value: $t('mrs') },
+                { key: 'd', value: $t('none_divers') },
+              ]"
+              id="salutation"
+              v-model="reservation.salutation"
+            />
+          </b-form-item>
+        </b-form-group>
 
-      <b-form-group>
-        <b-form-item>
-          <b-form-label for="firstname">
-            {{ $t('firstname') }}
-          </b-form-label>
-        </b-form-item>
-        <b-form-item>
-          <b-form-input
-            type="text"
-            id="firstname"
-            v-model="reservation.firstname"
-          />
-        </b-form-item>
-      </b-form-group>
+        <b-form-group>
+          <b-form-item>
+            <b-form-label for="firstname">
+              {{ $t('firstname') }}
+            </b-form-label>
+          </b-form-item>
+          <b-form-item>
+            <b-form-input
+              type="text"
+              id="firstname"
+              v-model="reservation.firstname"
+            />
+          </b-form-item>
+        </b-form-group>
 
-      <b-form-group>
-        <b-form-item>
-          <b-form-label for="surname">
-            {{ $t('surname') }}
-          </b-form-label>
-        </b-form-item>
-        <b-form-item>
-          <b-form-input
-            type="text"
-            id="surname"
-            v-model="reservation.surname"
-          />
-        </b-form-item>
-      </b-form-group>
+        <b-form-group>
+          <b-form-item>
+            <b-form-label for="surname">
+              {{ $t('surname') }}
+            </b-form-label>
+          </b-form-item>
+          <b-form-item>
+            <b-form-input
+              type="text"
+              id="surname"
+              v-model="reservation.surname"
+            />
+          </b-form-item>
+        </b-form-group>
 
-      <b-form-group>
-        <b-form-item>
-          <b-form-label for="mail">
-            {{ $t('mail') }}
-          </b-form-label>
-        </b-form-item>
-        <b-form-item>
-          <b-form-input type="email" id="mail" v-model="reservation.mail" />
-        </b-form-item>
-      </b-form-group>
+        <b-form-group>
+          <b-form-item>
+            <b-form-label for="mail">
+              {{ $t('mail') }}
+            </b-form-label>
+          </b-form-item>
+          <b-form-item>
+            <b-form-input type="email" id="mail" v-model="reservation.mail" />
+          </b-form-item>
+        </b-form-group>
 
-      <b-form-group>
-        <b-form-item>
-          <b-form-label for="phone">
-            {{ $t('phone') }}
-          </b-form-label>
-        </b-form-item>
-        <b-form-item>
-          <b-form-input type="tel" id="phone" v-model="reservation.phone" />
-        </b-form-item>
-      </b-form-group>
+        <b-form-group>
+          <b-form-item>
+            <b-form-label for="phone">
+              {{ $t('phone') }}
+            </b-form-label>
+          </b-form-item>
+          <b-form-item>
+            <b-form-input type="tel" id="phone" v-model="reservation.phone" />
+          </b-form-item>
+        </b-form-group>
 
-      <b-form-group>
-        <b-form-item>
-          <b-form-label for="notes">{{ $t('notes') }}</b-form-label>
-        </b-form-item>
-        <b-form-item>
-          <b-form-textarea id="notes" v-model="reservation.notes" />
-        </b-form-item>
-      </b-form-group>
+        <b-form-group>
+          <b-form-item>
+            <b-form-label for="notes">{{ $t('notes') }}</b-form-label>
+          </b-form-item>
+          <b-form-item>
+            <b-form-textarea id="notes" v-model="reservation.notes" />
+          </b-form-item>
+        </b-form-group>
 
-      <b-form-group buttons>
-        <b-form-item>
-          <b-button
-            type="button"
-            design="outline_danger"
-            @click="remove(reservation.id)"
-            :style="{ marginRight: '10px' }"
-          >
-            {{ $t('delete') }}
-          </b-button>
-          <b-button design="outline">{{ $t('save') }}</b-button>
-        </b-form-item>
-      </b-form-group>
-    </b-form>
+        <b-form-group buttons>
+          <b-form-item>
+            <b-button
+              type="button"
+              design="outline_danger"
+              @click="remove(reservation.id)"
+              :style="{ marginRight: '10px' }"
+            >
+              {{ $t('delete') }}
+            </b-button>
+            <b-button design="outline">{{ $t('save') }}</b-button>
+          </b-form-item>
+        </b-form-group>
+      </b-form>
+    </details>
   </div>
 </template>
 
 <style scoped>
 .reservation {
   border-bottom: 1px solid var(--color-neutral-02);
+}
+.selector {
+  cursor: pointer;
+  user-select: none;
 }
 </style>

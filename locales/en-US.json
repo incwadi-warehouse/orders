@@ -41,5 +41,6 @@
   "error": "Error",
   "deprecated_reservation_without_books": "Deprecated: Reservations without books won't be accepted anymore.",
   "old_reservation": "The reservation is {days} days old!",
-  "reserved_on": "Reserved on"
+  "reserved_on": "Reserved on",
+  "customer_details": "Customer Details"
 }
