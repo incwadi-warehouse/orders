@@ -44,111 +44,105 @@ describe('Reservation', () => {
     cy.visit('/')
     cy.url().should('include', '/')
 
-    cy.get(':nth-child(1) > details > .selector').click()
+    cy.get('.reservation:nth-child(1) details .selector').click()
 
-    cy.get(
-      ':nth-child(1) > details > .form > :nth-child(1) > :nth-child(2) > #date'
-    ).should('have.value', '2022-05-28')
+    cy.get('.reservation:nth-child(1) details #date').should(
+      'have.value',
+      '2022-05-28'
+    )
 
-    cy.get(
-      ':nth-child(1) > details > .form > :nth-child(2) > :nth-child(2) > #time'
-    ).should('include.value', ':44')
+    cy.get('.reservation:nth-child(1) details #time').should(
+      'include.value',
+      ':44'
+    )
 
-    cy.get(
-      ':nth-child(1) > details > .form > :nth-child(4) > :nth-child(2) > #salutation'
-    ).should('have.value', 'f')
+    cy.get('.reservation:nth-child(1) details #salutation').should(
+      'have.value',
+      'f'
+    )
 
-    cy.get(
-      ':nth-child(1) > details > .form > :nth-child(5) > :nth-child(2) > #firstname'
-    ).should('have.value', 'Jane')
+    cy.get('.reservation:nth-child(1) details #firstname').should(
+      'have.value',
+      'Jane'
+    )
 
-    cy.get(
-      ':nth-child(1) > details > .form > :nth-child(6) > :nth-child(2) > #surname'
-    ).should('have.value', 'Doe')
+    cy.get('.reservation:nth-child(1) details #surname').should(
+      'have.value',
+      'Doe'
+    )
 
-    cy.get(
-      ':nth-child(1) > details > .form > :nth-child(7) > :nth-child(2) > #mail'
-    ).should('have.value', '')
+    cy.get('.reservation:nth-child(1) details #mail').should('have.value', '')
 
-    cy.get(
-      ':nth-child(1) > details > .form > :nth-child(8) > :nth-child(2) > #phone'
-    ).should('have.value', '')
+    cy.get('.reservation:nth-child(1) details #phone').should('have.value', '')
 
-    cy.get(
-      ':nth-child(1) > details > .form > :nth-child(9) > :nth-child(2) > #notes'
-    ).should('have.value', 'note')
+    cy.get('.reservation:nth-child(1) details #notes').should(
+      'have.value',
+      'note'
+    )
 
     cy.get(':nth-child(1) > .alert')
   })
 
   it('show buttons', () => {
-    cy.get(':nth-child(2) > details > .selector').click()
-
+    cy.get('.reservation:nth-child(2) .hasButtons > .item > :nth-child(2)')
     cy.get(
-      ':nth-child(2) > details > .form > .hasButtons > .item > :nth-child(2)'
-    )
-    cy.get(
-      ':nth-child(2) > details > .form > .hasButtons > .item > .btn_outline_danger'
+      '.reservation:nth-child(2) .hasButtons > .item > .btn_outline_danger'
     )
   })
 
   it('edit reservation', () => {
-    // cy.get(':nth-child(2) > details > .selector').click()
+    cy.get('.reservation:nth-child(2) details .selector').click()
 
-    cy.get(
-      ' :nth-child(2) > details > .form > :nth-child(1) > :nth-child(2) > #date'
-    ).type('2022-05-29')
-    cy.get(
-      ':nth-child(2) > details > .form > :nth-child(1) > :nth-child(2) > #date'
-    ).should('have.value', '2022-05-29')
+    cy.get('.reservation:nth-child(2) details #date').type('2022-05-29')
+    cy.get('.reservation:nth-child(2) details #date').should(
+      'have.value',
+      '2022-05-29'
+    )
 
-    cy.get(
-      ':nth-child(2) > details > .form > :nth-child(2) > :nth-child(2) > #time'
-    ).type('13:00')
-    cy.get(
-      ':nth-child(2) > details > .form > :nth-child(2) > :nth-child(2) > #time'
-    ).should('include.value', ':00')
+    cy.get('.reservation:nth-child(2) details #time').type('13:00')
+    cy.get('.reservation:nth-child(2) details #time').should(
+      'include.value',
+      ':00'
+    )
 
-    cy.get(
-      ':nth-child(2) > details > .form > :nth-child(4) > :nth-child(2) > #salutation'
-    ).select('f')
-    cy.get(
-      ':nth-child(2) > details > .form > :nth-child(4) > :nth-child(2) > #salutation'
-    ).should('have.value', 'f')
+    cy.get('.reservation:nth-child(2) details #salutation').select('f')
+    cy.get('.reservation:nth-child(2) details #salutation').should(
+      'have.value',
+      'f'
+    )
 
-    cy.get(
-      ':nth-child(2) > details > .form > :nth-child(5) > :nth-child(2) > #firstname'
-    ).type('{backspace}{backspace}{backspace}{backspace}Jane')
-    cy.get(
-      ':nth-child(2) > details > .form > :nth-child(5) > :nth-child(2) > #firstname'
-    ).should('have.value', 'Jane')
+    cy.get('.reservation:nth-child(2) details #firstname').type(
+      '{backspace}{backspace}{backspace}{backspace}Jane'
+    )
+    cy.get('.reservation:nth-child(2) details #firstname').should(
+      'have.value',
+      'Jane'
+    )
 
-    cy.get(
-      ':nth-child(2) > details > .form > :nth-child(6) > :nth-child(2) > #surname'
-    ).type('{backspace}{backspace}{backspace}Test')
-    cy.get(
-      ':nth-child(2) > details > .form > :nth-child(6) > :nth-child(2) > #surname'
-    ).should('have.value', 'Test')
+    cy.get('.reservation:nth-child(2) details #surname').type(
+      '{backspace}{backspace}{backspace}Test'
+    )
+    cy.get('.reservation:nth-child(2) details #surname').should(
+      'have.value',
+      'Test'
+    )
 
-    cy.get(
-      ':nth-child(2) > details > .form > :nth-child(7) > :nth-child(2) > #mail'
-    ).type('test@localhost')
-    cy.get(
-      ':nth-child(2) > details > .form > :nth-child(7) > :nth-child(2) > #mail'
-    ).should('have.value', 'test@localhost')
+    cy.get('.reservation:nth-child(2) details #mail').type('test@localhost')
+    cy.get('.reservation:nth-child(2) details #mail').should(
+      'have.value',
+      'test@localhost'
+    )
 
-    cy.get(
-      ':nth-child(2) > details > .form > :nth-child(8) > :nth-child(2) > #phone'
-    ).type('123')
-    cy.get(
-      ':nth-child(2) > details > .form > :nth-child(8) > :nth-child(2) > #phone'
-    ).should('have.value', '123')
+    cy.get('.reservation:nth-child(2) details #phone').type('123')
+    cy.get('.reservation:nth-child(2) details #phone').should(
+      'have.value',
+      '123'
+    )
 
-    cy.get(
-      ':nth-child(2) > details > .form > :nth-child(9) > :nth-child(2) > #notes'
-    ).type(' note')
-    cy.get(
-      ':nth-child(2) > details > .form > :nth-child(9) > :nth-child(2) > #notes'
-    ).should('have.value', 'note note')
+    cy.get('.reservation:nth-child(2) details #notes').type(' note')
+    cy.get('.reservation:nth-child(2) details #notes').should(
+      'have.value',
+      'note note'
+    )
   })
 })
