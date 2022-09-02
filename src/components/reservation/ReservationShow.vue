@@ -78,11 +78,21 @@ const formatNumber = (number) => {
       </li>
     </ul>
 
-    <details>
-      <summary class="selector">
-        {{ $t('customer_details') }}
-      </summary>
-      <b-form @submit.prevent="update(collectionTimestamp)">
+    <b-form @submit.prevent="update(collectionTimestamp)">
+      <b-form-group>
+        <b-form-item>
+          <input type="checkbox" id="open" v-model="reservation.open" />
+          <b-form-label for="open">
+            {{ $t('new') }}
+          </b-form-label>
+        </b-form-item>
+      </b-form-group>
+
+      <details>
+        <summary class="selector">
+          {{ $t('customer_details') }}
+        </summary>
+
         <b-form-group>
           <b-form-item>
             <b-form-label for="date">
@@ -190,22 +200,22 @@ const formatNumber = (number) => {
             <b-form-textarea id="notes" v-model="reservation.notes" />
           </b-form-item>
         </b-form-group>
+      </details>
 
-        <b-form-group buttons>
-          <b-form-item>
-            <b-button
-              type="button"
-              design="outline_danger"
-              @click="remove(reservation.id)"
-              :style="{ marginRight: '10px' }"
-            >
-              {{ $t('delete') }}
-            </b-button>
-            <b-button design="outline">{{ $t('save') }}</b-button>
-          </b-form-item>
-        </b-form-group>
-      </b-form>
-    </details>
+      <b-form-group buttons>
+        <b-form-item>
+          <b-button
+            type="button"
+            design="outline_danger"
+            @click="remove(reservation.id)"
+            :style="{ marginRight: '10px' }"
+          >
+            {{ $t('delete') }}
+          </b-button>
+          <b-button design="outline">{{ $t('save') }}</b-button>
+        </b-form-item>
+      </b-form-group>
+    </b-form>
   </div>
 </template>
 
