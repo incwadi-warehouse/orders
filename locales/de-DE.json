@@ -43,5 +43,6 @@
   "old_reservation": "Die Reservierung ist {days} Tage alt!",
   "reserved_on": "Reserviert am",
   "customer_details": "Kundeninformation",
-  "reservations": "Reservierungen"
+  "reservations": "Reservierungen",
+  "new": "Neu"
 }

@@ -46,6 +46,7 @@ export function useReservation() {
       surname: reservation.value.surname,
       mail: reservation.value.mail,
       phone: reservation.value.phone,
+      open: reservation.value.open,
     })
       .then(() => {
         add({
