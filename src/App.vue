@@ -1,14 +1,14 @@
 <script setup>
 import { useLocale, useTheme } from '@baldeweg/ui'
-import { useBookmark } from '@/composables/useBookmark.js'
 import { useToast } from '@baldeweg/ui'
+import { onMounted, onUnmounted, ref } from 'vue'
+import pkg from './../package.json'
+import { useBookmark } from '@/composables/useBookmark.js'
 import { useReservation } from '@/composables/useReservation.js'
 import Logo from '@/components/AppLogo.vue'
 import AuthLogin from '@/components/auth/Login.vue'
 import useAuth from '@/composables/useAuth.js'
 import router from '@/router'
-import { onMounted, onUnmounted, ref } from 'vue'
-import pkg from './../package.json'
 
 const { locale } = useLocale()
 locale.value = import.meta.env.VUE_APP_I18N_LOCALE
@@ -206,9 +206,7 @@ const version = pkg.version
     <div class="project">
       <a href="https://github.com/abaldeweg">baldeweg Open Source</a>
       &bull;
-      <a href="https://github.com/incwadi-warehouse/docu/releases">{{
-        version
-      }}</a>
+      <a href="https://github.com/incwadi-warehouse">{{ version }}</a>
     </div>
 
     <b-toast v-if="current" :type="current.type" :visible="true">
