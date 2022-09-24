@@ -1,5 +1,5 @@
 <script setup>
-import { useLocale, useTheme } from '@baldeweg/ui'
+import { useLocale, useColorScheme } from '@baldeweg/ui'
 import { useToast } from '@baldeweg/ui'
 import { onMounted, onUnmounted, ref } from 'vue'
 import pkg from './../package.json'
@@ -10,9 +10,8 @@ import AuthLogin from '@/components/auth/Login.vue'
 import useAuth from '@/composables/useAuth.js'
 import router from '@/router'
 
-const { locale } = useLocale()
-locale.value = import.meta.env.VUE_APP_I18N_LOCALE
-useTheme()
+useLocale()
+useColorScheme()
 
 const auth = useAuth()
 
@@ -69,13 +68,13 @@ const version = pkg.version
 <template>
   <b-app>
     <b-masthead>
-      <b-masthead-item type="start" v-if="auth.state.isAuthenticated">
+      <b-masthead-item position="start" v-if="auth.state.isAuthenticated">
         <span @click="isDrawerActive = true">
           <b-icon type="hamburger" />
         </span>
       </b-masthead-item>
 
-      <b-masthead-item type="center">
+      <b-masthead-item position="center">
         <a :href="catalog">
           <logo v-if="hasLogo" />
           <svg
@@ -93,7 +92,7 @@ const version = pkg.version
         </a>
       </b-masthead-item>
 
-      <b-masthead-item type="end" v-if="auth.state.isAuthenticated">
+      <b-masthead-item position="end" v-if="auth.state.isAuthenticated">
         <b-dropdown position="bottom" class="action">
           <template #selector>
             <span @click.prevent>
@@ -160,12 +159,7 @@ const version = pkg.version
       <div v-html="about" />
     </b-container>
 
-    <b-drawer
-      :active="isDrawerActive"
-      collapsable
-      @open-menu="isDrawerActive = true"
-      @close-menu="isDrawerActive = false"
-    >
+    <b-panel :visible="isDrawerActive" @close="isDrawerActive = false">
       <div :style="{ padding: '20px' }">
         <b-list divider>
           <template #title>
@@ -181,7 +175,7 @@ const version = pkg.version
             </a>
           </template>
         </b-list>
-        <b-list :route="{ name: 'reservation' }" divider>
+        <b-list :route="{ name: 'reservation' }" divider active>
           <template #title>
             {{ $t('reservation') }}
           </template>
@@ -201,7 +195,7 @@ const version = pkg.version
           </template>
         </b-list>
       </div>
-    </b-drawer>
+    </b-panel>
 
     <div class="project">
       <a href="https://github.com/abaldeweg">baldeweg Open Source</a>
