@@ -3,7 +3,6 @@ import { useLocale, useColorScheme } from '@baldeweg/ui'
 import { useToast } from '@baldeweg/ui'
 import { onMounted, onUnmounted, ref } from 'vue'
 import pkg from './../package.json'
-import { useBookmark } from '@/composables/useBookmark.js'
 import { useReservation } from '@/composables/useReservation.js'
 import Logo from '@/components/AppLogo.vue'
 import AuthLogin from '@/components/auth/Login.vue'
@@ -33,24 +32,6 @@ onMounted(() => {
     next()
   })
 })
-
-const { bookmarks, list, open, createFromPage } = useBookmark()
-
-let bookmarkInterval = null
-
-const refresh = () => {
-  bookmarkInterval = setInterval(list, 5000)
-}
-
-onMounted(refresh)
-
-onUnmounted(() => {
-  clearInterval(bookmarkInterval)
-})
-
-const navigateToBookmarks = () => {
-  window.location = settings + '/bookmark'
-}
 
 const { current } = useToast()
 
@@ -110,30 +91,6 @@ const version = pkg.version
           </b-dropdown-item>
           <b-dropdown-item @click.prevent="auth.logout()">
             {{ $t('logout') }}
-          </b-dropdown-item>
-        </b-dropdown>
-
-        <b-dropdown position="bottom" class="action">
-          <template #selector>
-            <span @click.prevent>
-              <b-icon type="star" />
-            </span>
-          </template>
-          <b-dropdown-item
-            v-for="item in bookmarks"
-            :key="item.id"
-            @click.prevent="open(item.url)"
-          >
-            {{ item.name }}
-          </b-dropdown-item>
-
-          <b-dropdown-divider />
-
-          <b-dropdown-item icon="plus" @click="createFromPage()">
-            {{ $t('addThisPage') }}
-          </b-dropdown-item>
-          <b-dropdown-item icon="star" @click="navigateToBookmarks">
-            {{ $t('bookmarks') }}
           </b-dropdown-item>
         </b-dropdown>
 
