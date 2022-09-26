@@ -93,12 +93,12 @@ const formatNumber = (number) => {
           {{ $t('customer_details') }}
         </summary>
 
-        <b-alert type="warning"
+        <b-alert type="warning" :style="{ display: 'none' }"
           >Deprecated: Date and Time will be removed soon. Datum und Uhrzeit
           werden bald entfernt.</b-alert
         >
 
-        <b-form-group>
+        <b-form-group :style="{ display: 'none' }">
           <b-form-item>
             <b-form-label for="date">
               {{ $t('date') }}
@@ -109,7 +109,7 @@ const formatNumber = (number) => {
           </b-form-item>
         </b-form-group>
 
-        <b-form-group>
+        <b-form-group :style="{ display: 'none' }">
           <b-form-item>
             <b-form-label for="time">
               {{ $t('time') }}
