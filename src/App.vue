@@ -135,6 +135,12 @@ const version = pkg.version
           <b-dropdown-item icon="star" @click="navigateToBookmarks">
             {{ $t('bookmarks') }}
           </b-dropdown-item>
+
+          <b-alert type="warning">
+            <p>
+              Deprecated: Bookmarks will be removed. Bookmarks werden entfernt.
+            </p>
+          </b-alert>
         </b-dropdown>
 
         <span
