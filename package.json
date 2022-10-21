@@ -13,7 +13,7 @@
   "dependencies": {
     "@baldeweg/ui": "0.5.1",
     "axios": "0.27.2",
-    "dayjs": "1.11.5",
+    "dayjs": "1.11.6",
     "js-cookie": "3.0.1",
     "lodash": "4.17.21",
     "vue": "3.2.41",
