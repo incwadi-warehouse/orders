@@ -93,7 +93,7 @@ const version = pkg.version
             {{ $t('logout') }}
           </b-dropdown-item>
         </b-dropdown>
-
+        
         <span
           class="action"
           @click.prevent="$router.push({ name: 'reservation' })"
